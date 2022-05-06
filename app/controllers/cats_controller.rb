@@ -10,7 +10,8 @@ class CatsController < ApplicationController
     end
 
     def edit
-
+        @cat = Cat.find(params[:id])
+        render :edit
     end
 
 
@@ -20,7 +21,8 @@ class CatsController < ApplicationController
 
 
     def new
-        
+        @cat = Cat.new
+        render :new
     end
 
     def create
