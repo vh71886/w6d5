@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+ApplicationRecord.connection.reset_pk_sequence!('cats')
+ApplicationRecord.connection.reset_pk_sequence!('cat_rental_requests')
+
+Cat.destroy_all
+
 cat1 = Cat.create({
     name: 'Andrew',
     color: 'green',
@@ -33,3 +38,11 @@ cat4 = Cat.create({
     sex: 'F',
     description: 'rainbowy actually'
 })
+
+CatRentalRequest.destroy_all
+# status: APPROVED, PENDING, DENIED
+r1 = CatRentalRequest.create(cat_id: cat1.id, start_date: "20220101", end_date: "20220103", status: "APPROVED")
+r2 = CatRentalRequest.create(cat_id: cat1.id, start_date: "20220110", end_date: "20220115", status: "APPROVED")
+r3 = CatRentalRequest.create(cat_id: cat1.id, start_date: "20220120", end_date: "20220125", status: "APPROVED")
+# r4 = CatRentalRequest.create(cat_id: cat1.id, start_date: "", end_date: "", status: )
+# r5 = CatRentalRequest.create(cat_id: cat1.id, start_date: "", end_date: "", status: )
