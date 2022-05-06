@@ -8,4 +8,9 @@ class Cat < ApplicationRecord
     def age
         @age = Time.now.year -  Cat.birth_date.year
     end
+
+    has_many :rental_requests,
+    foreign_key: :cat_id,
+    class_name: :CarRentalRequest,
+    dependant: :destroy
 end
